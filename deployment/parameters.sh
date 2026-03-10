@@ -19,7 +19,7 @@ ORG_MASTER_PROFILE=DevOpsAccess-528260891230
 TEAM_ACCOUNT_PROFILE=DevOpsAccess-864045414781
 TEAM_ADMIN_GROUP="AWS DevOps"
 TEAM_AUDITOR_GROUP="AWS DevOps"
-TAGS="ssense:team=devops ssense:domain=tech-platform  ssense:application=iam-identity-center-team ssense:product=iam-identity-center-team ssense:environment-type=prod ssense:sensitive-data=false ssense:owneremail=devops@ssense.com"
+TAGS="ssense:team=devops ssense:domain=tech-platform ssense:application=iam-identity-center-team ssense:product=iam-identity-center-team ssense:environment-type=prod ssense:sensitive-data=false ssense:owneremail=devops@ssense.com"
 CLOUDTRAIL_AUDIT_LOGS=arn:aws:cloudtrail:us-west-2:528260891230:trail/aws-controltower-BaselineCloudTrail
 SECRET_NAME=TEAM-IDC-APP
 CACHE_TTL=604800
