@@ -25,7 +25,11 @@ def list_idc_groups(IdentityStoreId):
         paginator = p.paginate(IdentityStoreId=IdentityStoreId)
         all_groups = []
         for page in paginator:
-            all_groups.extend(page["Groups"])
+            # ponytail: project to schema fields only — upstream API now returns
+            # datetime fields (CreatedDate, etc.) that AWS Lambda runtime cannot
+            # JSON-serialize, causing blank screens in the frontend. PCIE-7152.
+            for g in page["Groups"]:
+                all_groups.append({"GroupId": g["GroupId"], "DisplayName": g["DisplayName"]})
         return sorted(all_groups, key=itemgetter('DisplayName'))
     except ClientError as e:
         print(e.response['Error']['Message'])
