@@ -12,6 +12,8 @@
 /build
 
 # deployment
+/deployment/parameters.sh
+/deployment/details.json
 /ignore
 
 # misc

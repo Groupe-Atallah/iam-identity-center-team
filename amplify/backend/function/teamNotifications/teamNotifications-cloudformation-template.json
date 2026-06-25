@@ -14,10 +14,6 @@
     "apiteamGraphQLAPIIdOutput": {
       "Type": "String",
       "Default": "apiteamGraphQLAPIIdOutput"
-    },
-    "customsnsNotificationTopicArn": {
-      "Type": "String",
-      "Default": "customsnsNotificationTopicArn"
     }
   },
   "Conditions": {
@@ -196,7 +192,7 @@
                 "sns:Publish"
               ],
               "Resource": {
-                "Ref": "customsnsNotificationTopicArn"
+                "Fn::ImportValue": "NotificationTopicArn"
               }
             }
           ]
