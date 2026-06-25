@@ -207,9 +207,7 @@ function Approvals(props) {
     },
     pagination: { pageSize: preferences.pageSize },
     sorting: {},
-    selection: {
-      trackBy: "id",
-    },
+    selection: {},
   });
 
   const { selectedItems } = collectionProps;
@@ -247,18 +245,6 @@ function Approvals(props) {
       setComment();
     });
   }
-
-  // Refresh data without resetting UI state (used by subscriptions)
-  function refreshItems() {
-    let filter = {
-      and: [{ email: { ne: props.user } }, { status: { eq: "pending" } }, { approvers: { contains: props.user } }],
-    };
-    sessions(filter).then((items) => {
-      items.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
-      setAllItems(items);
-    });
-  }
-
   function getSettings(){
     getSetting("settings").then((data) => {
       if (data !== null) {
@@ -276,7 +262,7 @@ function Approvals(props) {
   function approveEvent() {
     API.graphql(graphqlOperation(onUpdateRequests)).subscribe({
       next: () => {
-        refreshItems();
+        views();
       },
       error: (error) => console.warn(error),
     });
@@ -285,7 +271,7 @@ function Approvals(props) {
   function createEvent() {
     API.graphql(graphqlOperation(onCreateRequests)).subscribe({
       next: ({ value }) => {
-        refreshItems();
+        views();
       },
       error: (error) => console.warn(error),
     });
@@ -419,7 +405,6 @@ function Approvals(props) {
         }
         items={items}
         selectionType="single"
-        trackBy="id"
       />
       <div>
         {selectedItems.length ? (
