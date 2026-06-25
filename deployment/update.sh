@@ -40,7 +40,6 @@ if [ -z "$SECRET_NAME" ]; then
           teamAuditGroup="$TEAM_AUDITOR_GROUP" \
           tags="$TAGS" \
           teamAccount="$TEAM_ACCOUNT" \
-          cacheTTL=$CACHE_TTL \
           customAmplifyDomain="$UI_DOMAIN" \
         --tags $TAGS \
         --no-fail-on-empty-changeset --capabilities CAPABILITY_NAMED_IAM
@@ -54,7 +53,6 @@ if [ -z "$SECRET_NAME" ]; then
           teamAuditGroup="$TEAM_AUDITOR_GROUP" \
           tags="$TAGS" \
           teamAccount="$TEAM_ACCOUNT" \
-          cacheTTL=$CACHE_TTL \
         --tags $TAGS \
         --no-fail-on-empty-changeset --capabilities CAPABILITY_NAMED_IAM
     fi
@@ -68,7 +66,6 @@ if [ -z "$SECRET_NAME" ]; then
           teamAdminGroup="$TEAM_ADMIN_GROUP" \
           teamAuditGroup="$TEAM_AUDITOR_GROUP" \
           teamAccount="$TEAM_ACCOUNT" \
-          cacheTTL=$CACHE_TTL \
           tags="$TAGS" \
           customAmplifyDomain="$UI_DOMAIN" \
         --no-fail-on-empty-changeset --capabilities CAPABILITY_NAMED_IAM
@@ -81,7 +78,6 @@ if [ -z "$SECRET_NAME" ]; then
           teamAdminGroup="$TEAM_ADMIN_GROUP" \
           teamAuditGroup="$TEAM_AUDITOR_GROUP" \
           teamAccount="$TEAM_ACCOUNT" \
-          cacheTTL=$CACHE_TTL \
         --no-fail-on-empty-changeset --capabilities CAPABILITY_NAMED_IAM
     fi
   fi
@@ -101,7 +97,6 @@ else
           tags="$TAGS" \
           teamAccount="$TEAM_ACCOUNT" \
           customAmplifyDomain="$UI_DOMAIN" \
-          cacheTTL=$CACHE_TTL \
           customRepository="Yes" \
           customRepositorySecretName="$SECRET_NAME" \
         --tags $TAGS \
@@ -116,7 +111,6 @@ else
           teamAuditGroup="$TEAM_AUDITOR_GROUP" \
           tags="$TAGS" \
           teamAccount="$TEAM_ACCOUNT" \
-          cacheTTL=$CACHE_TTL \
           customRepository="Yes" \
           customRepositorySecretName="$SECRET_NAME" \
         --tags $TAGS \
@@ -136,7 +130,6 @@ else
           customRepositorySecretName="$SECRET_NAME" \
           tags="$TAGS" \
           customAmplifyDomain="$UI_DOMAIN" \
-          cacheTTL=$CACHE_TTL \
         --no-fail-on-empty-changeset --capabilities CAPABILITY_NAMED_IAM
     else
       aws cloudformation deploy --region $REGION --template-file template.yml \
@@ -149,7 +142,6 @@ else
           customRepository="Yes" \
           customRepositorySecretName="$SECRET_NAME" \
           teamAccount="$TEAM_ACCOUNT" \
-          cacheTTL=$CACHE_TTL \
         --no-fail-on-empty-changeset --capabilities CAPABILITY_NAMED_IAM
     fi
   fi
