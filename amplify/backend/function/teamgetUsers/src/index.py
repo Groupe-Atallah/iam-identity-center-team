@@ -24,7 +24,11 @@ def list_idc_users(IdentityStoreId):
         paginator = p.paginate(IdentityStoreId=IdentityStoreId)
         all_users = []
         for page in paginator:
-            all_users.extend(page["Users"])
+            # ponytail: project to schema fields only — upstream API now returns
+            # datetime fields that AWS Lambda runtime cannot JSON-serialize,
+            # causing blank screens in the frontend. PCIE-7152.
+            for u in page["Users"]:
+                all_users.append({"UserName": u["UserName"], "UserId": u["UserId"]})
         return sorted(all_users, key=itemgetter('UserName'))
     except ClientError as e:
         print(e.response['Error']['Message'])
